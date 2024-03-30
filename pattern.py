@@ -4,11 +4,12 @@ is_laughing()とis_nv()関数を提供する。
 """
 
 import re
-import jaconv
-import pyopenjtalk
+import shutil
 import unicodedata
 from pathlib import Path
-import shutil
+
+import jaconv
+import pyopenjtalk
 
 """
 非言語音声・感嘆詞等ではないのにマッチしてしまう単語を除外するためのファイル。

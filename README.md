@@ -60,35 +60,41 @@ path/to/original_data
 path/to/output
 ├── laugh
 │   ├── subdir1
+│   |   ├── laugh.csv
 │   │   ├── foo_0.wav
 │   │   ├── foo_1.wav
 │   │   ├── bar_0.wav
 │   │   └── baz_0.wav
 │   └── subdir2
 │       ├── subdir3
+│       |   ├── laugh.csv
 │       │   └── qux_0.wav
+|       ├── laugh.csv
 │       └── quux_0.wav
 ├── nv
 │   ├── subdir1
+│   |   ├── nv.csv
 │   │   ├── foo_2.wav
 | ...
 └── trans
     ├── subdir1
-    │   └── trans.csv
+    │   └── all.csv
     └── subdir2
         ├── subdir3
-        │   └── trans.csv
-        └── trans.csv
+        │   └── all.csv
+        └── all.csv
 ```
 
-ここで`foo_0.wav`は`foo.wav`の0番目のスライスを示しています。`trans.csv`は書き起こしデータです。
+ここで`foo_0.wav`は`foo.wav`の0番目のスライスを示しています。`trans.csv`は書き起こしデータです。また`laugh.csv`は笑い声と判定されたスライスの書き起こし、`nv.csv`は非言語音声や感嘆詞と判定されたスライスの書き起こし、また`all.csv`はそれ以外も含めた全てのスライスの書き起こしです。
 
 ### 注意
 
 - 笑い声の判定と非言語音声の判定では笑い声が優先されます。
+- 笑い声や非言語音声の判定の正規表現は改良の余地があると思うので、必要に応じて`pattern.py`を変更してください。
 - 非言語音声の判定は誤りが多く、特定のひらがなから単語ができてしまう場合それが非言語音声として判定されることがあります。結果を見ながら、そのような単語を`exclude_words.txt`に追加してください（毎回このファイルが参照されるので、スクリプト実行中でも変更が反映されます）。
 - スライスの細かいパラメータや、笑い声正規表現等は、それぞれ`split.py`、`pattern.py`内を参照しつつ必要ならば変更してください。
-- デフォルトではHugging FaceのWhisperのmediumモデルが使われます（笑い声や非言語音声かどうかさえ判定できればよく書き起こし精度はそこまで必要がない）、が必要に応じて`collect_laughter.py`の引数`--model`でモデルを指定できます。細かい他の引数等はコードを参照してください。
+- デフォルトでは笑い声等判定のための書き起こしにはHugging FaceのWhisperのmediumモデルが使われます（笑い声や非言語音声かどうかさえ判定できればよく書き起こし精度はそこまで必要がない）、が必要に応じて`collect_laughter.py`の引数`--model large-v2`等でモデルを指定できます。
+- 細かい他の引数等はコードを参照してください。
 
 ## その他のスクリプト
 

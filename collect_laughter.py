@@ -104,7 +104,7 @@ for subdir in subdirs:
     csv_path_laugh = current_out_dir_laugh / "laugh.csv"
     csv_path_nv = current_out_dir_nv / "nv.csv"
 
-    trans_all_csv = output_dir / "trans" / subdir.relative_to(input_dir) / "trans.csv"
+    trans_all_csv = output_dir / "trans" / subdir.relative_to(input_dir) / "all.csv"
 
     if trans_all_csv.exists():
         logger.warning(f"{trans_all_csv} already exists.")
