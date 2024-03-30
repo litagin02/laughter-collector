@@ -17,6 +17,7 @@ from pattern import is_laughing, is_nv, normalize_text
 from utils import is_audio_file, logger
 
 
+# HF Whisperの書き起こしの進捗を表示するために必要なデータセットクラス
 class ListDataset(Dataset):
     def __init__(self, original_list):
         self.original_list = original_list
@@ -121,7 +122,7 @@ for subdir in subdirs:
     slice_process = subprocess.Popen(
         [
             python,
-            "split.py",
+            "splice.py",
             "-i",
             str(subdir),
             "-o",
