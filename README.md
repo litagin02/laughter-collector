@@ -27,7 +27,8 @@ pip install -r requirements.txt
 
 - 音声ファイルたちをディレクトリ（以下`path/to/original_data`とする）に格納
 - 各ファイルの拡張子は".wav", ".mp3", ".flac", ".ogg", ".opus"のいずれかである必要があります（必要に応じて`utils.py`を書き換えれば他もいけます）。
-- `path/to/original_data`では好きなようにサブディレクトリたちの階層を作ってそこに音声ファイルを格納してください。**デフォルトでは直下の音声ファイルは反映されず、1つ下の階層からのみ反映されます**。結果は相対パスを保持したまま指定した`path/to/output`に保存されます。
+- `path/to/original_data`では好きなようにサブディレクトリたちの階層を作ってそこに音声ファイルを格納してください。**デフォルトでは直下の音声ファイルは反映されず、1つ下の階層からのみ反映されます**。直下のみを反映するには`-nr`オプションを指定してください。
+- 結果は相対パスを保持したまま指定した`path/to/output`に保存されます。
 
 ### データセットの作成
 
@@ -37,6 +38,8 @@ python collect_laughter.py -i path/to/original_data -o path/to/output
 
 裏では`split.py`が呼び出され、マルチプロセスで音声を切り出して`path/to/output/temp`にスライスされた音声が保存されて行き、それを本体のスクリプトが順次読み込んで書き起こしをバッチ処理で行います。
 
+細かい他の引数はコードを参照してください。
+
 ### 結果
 
 元々の音声ファイルが以下のような構造だったとします。
@@ -44,12 +47,12 @@ python collect_laughter.py -i path/to/original_data -o path/to/output
 path/to/original_data
 ├── subdir1
 │   ├── foo.wav
-│   ├── bar.wav
-│   └── baz.wav
+│   ├── bar.mp3
+│   └── baz.ogg
 └── subdir2
     ├── subdir3
-    │   └── qux.wav
-    └── quux.wav
+    │   └── qux.mp3
+    └── quux.flac
 ```
 
 結果は以下のような構造になります。
