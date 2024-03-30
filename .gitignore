@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+logs/
+unused/
+results/
+
+do.sh
+exclude_words.txt
+stats.png
+
+*.csv
+*.json
+*.txt
