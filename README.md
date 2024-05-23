@@ -10,7 +10,7 @@
 
 ## 使い方
 
-Python>=3.10とNVidia GPUが必要です。
+Python>=3.10とNVIDIA GPUが必要です。
 
 ### インストール
 
